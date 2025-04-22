@@ -5,15 +5,26 @@ import { Droppable, Draggable } from "@hello-pangea/dnd";
 import NoteCard from "./NoteCard";
 
 const NoteList = () => {
-  const { notes, deleteNote } = useContext(NotesContext);
+  const { notes, deleteNote, searchButton } = useContext(NotesContext);
   const navigate = useNavigate();
 
   // Only show notes without "Important", "Urgent", "General"
+  // const uncategorizedNotes = notes.filter(
+  //   (note) =>
+  //     (!note.categories.includes("Important") &&
+  //       !note.categories.includes("Urgent") &&
+  //       !note.categories.includes("General") &&
+  //       note.title.toLowerCase().includes(searchButton.toLowerCase())) ||
+  //     note.content.toLowerCase().includes(searchButton.toLowerCase())
+  // );
+
   const uncategorizedNotes = notes.filter(
     (note) =>
-      !note.categories.includes("Important") &&
-      !note.categories.includes("Urgent") &&
-      !note.categories.includes("General")
+      !["Important", "Urgent", "General"].some((cat) =>
+        note.categories.includes(cat)
+      ) &&
+      (note.title.toLowerCase().includes(searchButton.toLowerCase()) ||
+        note.content.toLowerCase().includes(searchButton.toLowerCase()))
   );
 
   return (

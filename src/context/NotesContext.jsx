@@ -34,6 +34,8 @@ export const NotesProvider = ({ children }) => {
     "bg-gradient-to-r from-blue-500 to-purple-600"
   );
   const [addOpen, setAddOpen] = useState(false);
+  const [searchButton, setSearchButton] = useState("");
+
   // Load from localStorage on first render
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("notes"));
@@ -95,6 +97,8 @@ export const NotesProvider = ({ children }) => {
         addOpen,
         setAddOpen,
         updateNoteColor,
+        searchButton,
+        setSearchButton,
       }}
     >
       {children}

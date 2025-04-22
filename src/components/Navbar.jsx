@@ -3,11 +3,13 @@ import { FaCircleHalfStroke } from "react-icons/fa6";
 import { FaPlusCircle } from "react-icons/fa";
 import { useState } from "react";
 import { NotesContext } from "../context/NotesContext";
+import { FaSearch } from "react-icons/fa";
 // import AddNoteModal from "./AddNoteModal";
 
 export const Navbar = () => {
   const { setBgColor, bgColor, setAddOpen } = useContext(NotesContext);
   const [showPalette, setShowPalette] = useState(false);
+  const { searchButton, setSearchButton } = useContext(NotesContext);
   //   const palettes = [
   //     "bg-linear-gradient(to bottom, #0d1282, #0a6ebd)",
   //     "bg-blue-900",
@@ -34,6 +36,19 @@ export const Navbar = () => {
       className={`flex ${bgColor} text-white w-full cursor-pointer items-center justify-between shadow px-6 py-4 `}
     >
       <div className="text-3xl font-bold ">Notes</div>
+      <div className="flex justify-end p-4">
+        <input
+          type="text"
+          placeholder="Search"
+          value={searchButton}
+          onChange={(e) => setSearchButton(e.target.value)}
+          className="border border-gray-300 rounded-lg px-4 focus:outline-none focus:ring-2 focus:ring-blue-900 bg-white text-black"
+        />
+        <button className="mx-2">
+          <FaSearch className="text-white" />
+        </button>
+      </div>
+
       <div className="flex items-center gap-4 relative ">
         <div className="relative">
           <FaCircleHalfStroke

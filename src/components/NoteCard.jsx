@@ -38,6 +38,12 @@ const NoteCard = ({ note }) => {
   if (!note) return null;
   return (
     <>
+      <div
+        onClick={() => navigate(`/note/${note.id}`)}
+        className="cursor-pointer"
+      >
+        {/* the full card design */}
+      </div>
       {/* <div className="bg-white rounded-xl shadow p-4 hover:shadow-lg transition w-full mt-4 "> */}
       <div
         className={`rounded-xl shadow p-4 hover:shadow-lg transition w-full mt-4  ${selectedColor}`}
